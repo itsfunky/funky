@@ -11,11 +11,7 @@ import (
 
 // MetadataHandler responds with the function's metadata.
 func MetadataHandler(w http.ResponseWriter, r *http.Request) {
-	meta := map[string]string{
-		"function_name": funky.FunctionName,
-	}
-
-	b, err := json.Marshal(meta)
+	b, err := json.Marshal(funky.Metadata())
 	if err != nil {
 		fmt.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
