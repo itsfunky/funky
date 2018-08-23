@@ -2,24 +2,61 @@
 
 
 [[projects]]
+  digest = "1:7637de64e2bad97a7b9d1665e9cb0f9b709b1ef28d09232da908ead542bf89f0"
   name = "github.com/aws/aws-lambda-go"
   packages = [
     "lambda",
     "lambda/messages",
-    "lambdacontext"
+    "lambdacontext",
   ]
+  pruneopts = "UT"
   revision = "4d30d0ff60440c2d0480a15747c96ee71c3c53d4"
   version = "v1.2.0"
 
 [[projects]]
+  digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  pruneopts = "UT"
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
+  digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  pruneopts = "UT"
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  digest = "1:c40d65817cdd41fac9aa7af8bed56927bb2d6d47e4fea566a74880f5c2b1c41e"
+  name = "github.com/stretchr/testify"
+  packages = [
+    "assert",
+    "require",
+  ]
+  pruneopts = "UT"
+  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
+  version = "v1.2.2"
+
+[[projects]]
+  digest = "1:b24d38b282bacf9791408a080f606370efa3d364e4b5fd9ba0f7b87786d3b679"
   name = "gopkg.in/urfave/cli.v1"
   packages = ["."]
+  pruneopts = "UT"
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
   version = "v1.20.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "77cb36f4ef1319d2bd86c36a23ac4ae4759670b2eae525e3e73fa3fc450516b5"
+  input-imports = [
+    "github.com/aws/aws-lambda-go/lambda",
+    "github.com/aws/aws-lambda-go/lambdacontext",
+    "github.com/stretchr/testify/assert",
+    "github.com/stretchr/testify/require",
+    "gopkg.in/urfave/cli.v1",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
