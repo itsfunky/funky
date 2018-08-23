@@ -4,3 +4,22 @@
 # Funky
 
 Funky lets you develop and build lambdas/functions for multiple cloud services, while allowing you to test and iterate quickly when developing locally.
+
+## Example
+
+```go
+package main
+
+import (
+  "io"
+  "net/http"
+  
+  "github.com/itsfunky/funky"
+)
+
+funky.Handle(http.HandlerFunc(func (w http.ResponseWriter, _ *http.Request) {
+  io.WriteString(w, "Hello World")
+}))
+```
+
+[Full Examples →](example)
