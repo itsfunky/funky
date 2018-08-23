@@ -33,8 +33,22 @@ func getFreePort() (int, error) {
 	return port, nil
 }
 
+func getLDFlags(path string) string {
+	flags := map[string]string{
+		"FunctionName": path,
+	}
+
+	out := ""
+	for k, v := range flags {
+		out += " -X github.com/itsfunky/funky." + k + "=" + v
+	}
+
+	return "-ldflags \"" + out + "\""
+}
+
 func createRunnerCommand(ctx context.Context, path string, port int) *exec.Cmd {
-	cmd := exec.CommandContext(ctx, "sh", "-c", "go run -tags local main.go")
+	ldflags := getLDFlags(path)
+	cmd := exec.CommandContext(ctx, "sh", "-c", "go run -tags local " + ldflags + " main.go")
 	cmd.Dir = filepath.Join("functions", path)
 	cmd.Env = append(
 		os.Environ(),
