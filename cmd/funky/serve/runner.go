@@ -48,7 +48,7 @@ func getLDFlags(path string) string {
 
 func createRunnerCommand(ctx context.Context, path string, port int) *exec.Cmd {
 	ldflags := getLDFlags(path)
-	cmd := exec.CommandContext(ctx, "sh", "-c", "go run -tags local " + ldflags + " main.go")
+	cmd := exec.CommandContext(ctx, "sh", "-c", "go run -tags local "+ldflags+" main.go")
 	cmd.Dir = filepath.Join("functions", path)
 	cmd.Env = append(
 		os.Environ(),
