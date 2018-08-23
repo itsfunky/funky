@@ -10,7 +10,7 @@ import (
 
 // Service represents the RPC service that will be invoke funky handlers.
 type Service struct {
-	handler http.Handler
+	Handler http.Handler
 }
 
 // Invoke is an RPC handler that is called when there is an incoming request.
@@ -20,7 +20,7 @@ func (svc Service) Invoke(in *Request, out *Response) error {
 		return err
 	}
 
-	svc.handler.ServeHTTP(w, r)
+	svc.Handler.ServeHTTP(w, r)
 
 	resp := w.Result()
 	out.Payload, err = ioutil.ReadAll(resp.Body)

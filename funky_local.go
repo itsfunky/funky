@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"net/rpc"
 	"os"
+
+	"github.com/itsfunky/funky/local"
 )
 
 // Handle sets up and starts a local RPC server.
@@ -26,7 +28,7 @@ func Handle(handler http.Handler) {
 		log.Fatal(err)
 	}
 
-	svc := Service{handler}
+	svc := local.Service{Handler: handler}
 	if err := rpc.Register(svc); err != nil {
 		log.Fatal("failed to register handler function", err)
 	}

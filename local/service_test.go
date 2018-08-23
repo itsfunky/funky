@@ -47,7 +47,7 @@ func TestServiceInvokeSuccess(t *testing.T) {
 		_, err = io.WriteString(w, "Hello World")
 		require.NoError(t, err, "Writing to response body should not error.")
 	})
-	svc := Service{handler: handler}
+	svc := Service{Handler: handler}
 
 	resp := Response{}
 	err = svc.Invoke(createRequest(), &resp)
@@ -60,7 +60,7 @@ func TestServiceInvokeFailure(t *testing.T) {
 	require.NoError(t, err, "Setting the environment variable should not error.")
 
 	handler := http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {})
-	svc := Service{handler: handler}
+	svc := Service{Handler: handler}
 
 	err = svc.Invoke(createRequest(), &Response{})
 	assert.Error(t, err, "Should return an error for invalid url..")
