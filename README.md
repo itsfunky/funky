@@ -46,10 +46,10 @@ func main() {
 - [ ] Local
   - [x] Basic RPC Service
   - [ ] Extended Options
-- [ ] AWS
+- [ ] AWS Lambda
   - [x] Basic Invocations
   - [ ] Extended Invocation Support
-- [ ] Google
+- [ ] Google Cloud Functions
   - [ ] JS Shim
   - [ ] Foreground Function Support
   - [ ] Background Function Support

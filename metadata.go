@@ -1,7 +1,7 @@
 package funky
 
 var (
-	// FunctionName is the functions name set at build time.
+	// FunctionName is the function's name set at build time.
 	FunctionName = ""
 )
 
