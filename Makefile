@@ -1,21 +1,31 @@
 VERSION ?= development
+COVERAGE_FILE ?= coverage.out
 
-.PHONY: install
-install:
+.PHONY       : help
+help         : Makefile
+	@sed -n 's/^## /	/p' $<
+
+## install   : Compiles and installs funky to your Go bin path.
+.PHONY       : install
+install      :
 	@go install -a -ldflags "-X main.Version=${VERSION}" github.com/itsfunky/funky/cmd/funky
 
-.PHONY: clean
-clean:
-	@rm coverage.out
-
-.PHONY: test
-test:
+## test      : Runs Go unit tests.
+.PHONY       : test
+test         :
 	@go test --tags test -v ./{,aws,cmd,local}/...
 
-.PHONY: cover
-cover:
-	@go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./{,aws,cmd,local}/...
+## cover     : Runs Go unit tests with coverage output.
+.PHONY       : cover
+cover        :
+	@go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ./{,aws,cmd,local}/...
 
-.PHONY: servecover
-servecover: cover
-	@go tool cover -html=coverage.out
+## coverhtml : Runs Go unit tests and opens coverage report in your default browser.
+.PHONY       : coverhtml
+coverhtml    : cover
+	@go tool cover -html=$(COVERAGE_FILE)
+
+## clean     : Removes auto-generated files.
+.PHONY       : clean
+clean        :
+	@rm -f $(COVERAGE_FILE)
