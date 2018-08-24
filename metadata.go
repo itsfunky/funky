@@ -5,13 +5,14 @@ var (
 	FunctionName = ""
 )
 
-type metadata struct {
+// FunctionMetadata represents the invoked functions metadata.
+type FunctionMetadata struct {
 	FunctionName string `json:"function_name"`
 }
 
 // Metadata provides the available function metadata.
-func Metadata() metadata {
-	return metadata{
+func Metadata() FunctionMetadata {
+	return FunctionMetadata{
 		FunctionName: FunctionName,
 	}
 }
