@@ -1,5 +1,6 @@
-VERSION ?= development
+VERSION       ?= development
 COVERAGE_FILE ?= coverage.out
+TEST_FILES    ?= ./{,cmd,providers}/...
 
 ALL_GO_FILES := $(shell find . -type f -name '*.go')
 
@@ -15,13 +16,13 @@ install          :
 ## test          : Runs Go unit tests.
 .PHONY           : test
 test             :
-	@go test --tags test -v ./{,aws,cmd,local}/...
+	@go test --tags test -v $(TEST_FILES)
 
 ## cover         : Runs Go unit tests with coverage output.
 .PHONY           : cover
 cover            : $(COVERAGE_FILE)
 $(COVERAGE_FILE) : $(ALL_GO_FILES)
-	@go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ./{,aws,cmd,local}/...
+	@go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count $(TEST_FILES)
 
 ## coverhtml     : Runs Go unit tests and opens coverage report in your default browser.
 .PHONY           : coverhtml
