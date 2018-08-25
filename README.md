@@ -36,11 +36,12 @@ func main() {
   - [ ] Invoke Functions (remote)
   - [ ] Invoke Functions (local)
   - [ ] List Functions
-  - [ ] View Logs
+  - [ ] View Logs (remote)
     - [ ] Live Tail
   - [ ] Metrics (remote)
   - [ ] Metrics (local)
   - [ ] Serve HTTP (local)
+    - [x] Basic Logging
     - [x] Basic Serving
     - [ ] HTTP Event Serving
 - [ ] Local

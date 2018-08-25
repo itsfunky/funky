@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/itsfunky/funky/local"
+	"github.com/itsfunky/funky/providers/local"
 )
 
 type runner func(http.ResponseWriter, *http.Request) error

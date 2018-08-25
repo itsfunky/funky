@@ -8,7 +8,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"github.com/itsfunky/funky/aws"
+	"github.com/itsfunky/funky/providers/aws"
 )
 
 // Handle sets up and starts the handler with AWS Lambda.

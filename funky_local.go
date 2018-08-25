@@ -11,7 +11,7 @@ import (
 	"net/rpc"
 	"os"
 
-	"github.com/itsfunky/funky/local"
+	"github.com/itsfunky/funky/providers/local"
 )
 
 // Handle sets up and starts a local RPC server.
