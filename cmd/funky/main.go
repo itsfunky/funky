@@ -6,7 +6,11 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
+	// Commands.
 	"github.com/itsfunky/funky/cmd/funky/serve"
+
+	// Providers.
+	_ "github.com/itsfunky/funky/providers/aws"
 )
 
 var (
@@ -19,7 +23,7 @@ var (
 func init() {
 	app.Name = "funky"
 	app.HelpName = "funky"
-	app.Usage = "Create and manage cross-cloud functions and resources"
+	app.Usage = "Create and manage cross-cloud functions and resources."
 	app.UsageText = ""
 	app.EnableBashCompletion = true
 	app.Version = Version
@@ -29,7 +33,9 @@ func init() {
 			Name:    "serve",
 			Aliases: []string{"s"},
 			Usage:   "serve your functions on a local server",
-			Action:  serve.Serve,
+			Action:  func(_ *cli.Context) {
+				serve.Serve()
+			},
 		},
 	}
 }

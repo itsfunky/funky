@@ -10,6 +10,7 @@ var (
 
 // Provider represents configuration for a given provider.
 type Provider struct {
+	Shim    bool
 	Compile string
 }
 

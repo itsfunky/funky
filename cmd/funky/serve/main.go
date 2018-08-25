@@ -6,8 +6,6 @@ import (
 	"net/http"
 	"strings"
 	"sync"
-
-	cli "gopkg.in/urfave/cli.v1"
 )
 
 var (
@@ -43,7 +41,7 @@ func findOrCreateRoute(ctx context.Context, path string) (route, error) {
 }
 
 // Serve creates an http server for locally invoking functions.
-func Serve(_ *cli.Context) {
+func Serve() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
