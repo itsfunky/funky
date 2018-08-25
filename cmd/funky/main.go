@@ -33,7 +33,7 @@ func init() {
 			Name:    "serve",
 			Aliases: []string{"s"},
 			Usage:   "serve your functions on a local server",
-			Action:  func(_ *cli.Context) {
+			Action: func(_ *cli.Context) {
 				serve.Serve()
 			},
 		},
