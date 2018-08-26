@@ -13,6 +13,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/itsfunky/funky/internal"
+	"github.com/itsfunky/funky/providers"
 	"github.com/itsfunky/funky/providers/local"
 )
 
@@ -33,31 +35,11 @@ func getFreePort() (int, error) {
 	return port, nil
 }
 
-func getLDFlags(path string) string {
-	flags := map[string]string{
-		"FunctionName": path,
-	}
-
-	out := ""
-	for k, v := range flags {
-		out += " -X github.com/itsfunky/funky." + k + "=" + v
-	}
-
-	return "-ldflags \"" + out + "\""
-}
-
-func createRunnerCommand(ctx context.Context, path string, port int) *exec.Cmd {
-	ldflags := getLDFlags(path)
-	cmd := exec.CommandContext(ctx, "sh", "-c", "go run -tags local "+ldflags+" main.go")
-	cmd.Dir = filepath.Join("functions", path)
-	cmd.Env = append(
-		os.Environ(),
-		fmt.Sprintf("FUNKY_FUNCTION_NAME=%s", path),
-		fmt.Sprintf("FUNKY_SERVER_PORT=%d", port),
-	)
-
-	cmd.Stdout = createLogWriter(path, os.Stdout)
-	cmd.Stderr = createLogWriter(path, os.Stderr)
+func createRunnerCommand(ctx context.Context, function string, port int) *exec.Cmd {
+	cmd := internal.CreateCommand(ctx, providers.Provider{Name: "local"}, function, internal.RunAction)
+	cmd.Env = append(cmd.Env, fmt.Sprintf("FUNKY_SERVER_PORT=%d", port))
+	cmd.Stdout = createLogWriter(function, os.Stdout)
+	cmd.Stderr = createLogWriter(function, os.Stderr)
 
 	return cmd
 }
