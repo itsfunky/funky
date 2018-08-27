@@ -27,30 +27,30 @@ func testCreateCommandSuite(t *testing.T, action CommandAction) {
 		Name: "tester",
 	}
 
-        cmd := CreateCommand(context.Background(), p, "foobar", action)
-        assert.Equal(t, filepath.Join("functions", "foobar"), cmd.Dir, "Dir should point to the function's folder.")
+	cmd := CreateCommand(context.Background(), p, "foobar", action)
+	assert.Equal(t, filepath.Join("functions", "foobar"), cmd.Dir, "Dir should point to the function's folder.")
 
 	assert.Equal(t, 3, len(cmd.Args), "Command should only have 2 arguments")
 	assert.Equal(t, "sh", cmd.Args[0], "Command path should be 'sh'.")
 	assert.Equal(t, "-c", cmd.Args[1], "First command arg should be '-c'.")
 
 	expectedLDFlags := GetLDFlags(context.Background(), p, "foobar")
-	expectedCommand := "go "+string(action)+" -tags tester -ldflags \""+expectedLDFlags+"\" *.go"
+	expectedCommand := "go " + string(action) + " -tags tester -ldflags \"" + expectedLDFlags + "\" *.go"
 	assert.Equal(t, expectedCommand, cmd.Args[2], "Second command arg should be a proper 'go' command.")
 
-        gotFunkyEnvs := map[string]string{}
-        expectedFunkyEnvs := map[string]string{
-                "FUNKY_FUNCTION_NAME": "foobar",
-        }
+	gotFunkyEnvs := map[string]string{}
+	expectedFunkyEnvs := map[string]string{
+		"FUNKY_FUNCTION_NAME": "foobar",
+	}
 
-        for _, v := range cmd.Env {
-                if strings.HasPrefix(v, "FUNKY_") {
-                        kv := strings.SplitN(v, "=", 2)
-                        gotFunkyEnvs[kv[0]] = kv[1]
-                }
-        }
+	for _, v := range cmd.Env {
+		if strings.HasPrefix(v, "FUNKY_") {
+			kv := strings.SplitN(v, "=", 2)
+			gotFunkyEnvs[kv[0]] = kv[1]
+		}
+	}
 
-        assert.Equal(t, expectedFunkyEnvs, gotFunkyEnvs, "Env should include both Environment variables and Funky variables.")
+	assert.Equal(t, expectedFunkyEnvs, gotFunkyEnvs, "Env should include both Environment variables and Funky variables.")
 }
 
 func TestCreateCommandBuild(t *testing.T) {

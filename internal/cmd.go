@@ -12,10 +12,11 @@ import (
 )
 
 var (
-	ldFlag = "-X github.com/itsfunky/funky.%s=%s"
+	ldFlag  = "-X github.com/itsfunky/funky.%s=%s"
 	command = "go %s -tags %s -ldflags \"%s\" *.go"
 )
 
+// CommandAction enum values.
 var (
 	BuildAction CommandAction = "build"
 	RunAction   CommandAction = "run"
@@ -28,7 +29,7 @@ type CommandAction string
 func GetLDFlags(_ context.Context, provider providers.Provider, function string) string {
 	flagsMap := map[string]string{
 		"FunctionName": function,
-		"Provider":      provider.Name,
+		"Provider":     provider.Name,
 	}
 
 	flags := make([]string, 0, len(flagsMap))
