@@ -4,6 +4,8 @@ go:
   - "1.10"
   - "1.11"
   - master
+install:
+  - go get -t ./...
 script:
   - make help
   - make install
