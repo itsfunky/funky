@@ -1,3 +1,4 @@
+SHELL          = bash
 VERSION       ?= development
 COVERAGE_FILE ?= coverage.out
 TEST_FILES    ?= ./{,cmd,internal,providers}/...
