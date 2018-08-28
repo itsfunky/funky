@@ -10,6 +10,7 @@ script:
   - make help
   - make install
   - make cover || echo 'Failed'
+  - make cover2 || echo 'Failed'
   - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./{,cmd,internal,providers}/...
 jobs:
   fast_finish: true
