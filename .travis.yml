@@ -5,7 +5,7 @@ go:
   - "1.11"
   - master
 install:
-  - go get -t ./...
+  - go get -v -t ./...
 script:
   - make help
   - make install

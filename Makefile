@@ -1,6 +1,7 @@
+SHELL          = bash
 VERSION       ?= development
 COVERAGE_FILE ?= coverage.out
-TEST_FILES    ?= github.com/itsfunky/funky/{,cmd,internal,providers}/...
+TEST_FILES    ?= ./{,cmd,internal,providers}/...
 
 ALL_GO_FILES := $(shell find . -type f -name '*.go')
 
@@ -22,7 +23,7 @@ test             :
 .PHONY           : cover
 cover            : $(COVERAGE_FILE)
 $(COVERAGE_FILE) : $(ALL_GO_FILES)
-	@go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count $(TEST_FILES)
+	@go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ${TEST_FILES}
 
 ## coverhtml     : Runs Go unit tests and opens coverage report in your default browser.
 .PHONY           : coverhtml
