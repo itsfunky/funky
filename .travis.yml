@@ -5,11 +5,15 @@ go:
   - "1.11"
   - master
 install:
-  - go get -t ./...
+  - go get -v ./...
 script:
   - make help
   - make install
-  - make cover
+  - make cover || echo 'Failed'
+  - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./{,cmd,internal,providers}/... || echo 'Failed'
+  - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./... || echo 'Failed'
+  - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count github.com/itsfunky/funky/{,cmd,internal,providers}/... || echo 'Failed'
+  - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count github.com/itsfunky/funky/... || echo 'Failed'
 jobs:
   fast_finish: true
   allow_failures:
