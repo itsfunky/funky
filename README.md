@@ -1,5 +1,6 @@
 [![GoDoc](https://godoc.org/github.com/itsfunky/funky?status.svg)](https://godoc.org/github.com/itsfunky/funky)
 [![Go Report Card](https://goreportcard.com/badge/github.com/itsfunky/funky)](https://goreportcard.com/report/github.com/itsfunky/funky)
+[![Build Status](https://travis-ci.org/itsfunky/funky.svg?branch=master)](https://travis-ci.org/itsfunky/funky)
 
 # Funky
 
