@@ -27,14 +27,15 @@ type CommandAction string
 
 // GetLDFlags returns a list of LD Flags as a string.
 func GetLDFlags(_ context.Context, provider providers.Provider, function string) string {
-	flagsMap := map[string]string{
-		"FunctionName": function,
-		"Provider":     provider.Name,
+	// Use a matrix in order to keep order and not have to sort later.
+	flagsMatrix := [][]string{
+		[]string{"FunctionName", function},
+		[]string{"Provider", provider.Name},
 	}
 
-	flags := make([]string, 0, len(flagsMap))
-	for k, v := range flagsMap {
-		flags = append(flags, fmt.Sprintf(ldFlag, k, v))
+	flags := make([]string, 0, len(flagsMatrix))
+	for _, v := range flagsMatrix {
+		flags = append(flags, fmt.Sprintf(ldFlag, v[0], v[1]))
 	}
 
 	return strings.Join(flags, " ")
