@@ -1,11 +1,10 @@
 language: go
 go:
-  - "1.9"
   - "1.10"
   - "1.11"
   - master
 install:
-  - go get -t ./...
+  - go get -v -t ./...
 script:
   - make help
   - make install

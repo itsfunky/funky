@@ -1,6 +1,7 @@
+SHELL          = bash
 VERSION       ?= development
 COVERAGE_FILE ?= coverage.out
-TEST_FILES    ?= github.com/itsfunky/funky/{,cmd,internal,providers}/...
+TEST_FILES    ?= ./{,cmd,internal,providers}/...
 
 ALL_GO_FILES := $(shell find . -type f -name '*.go')
 
