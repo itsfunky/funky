@@ -11,7 +11,7 @@ script:
   - make help
   - make install
   - make cover || echo 'Failed'
-  - bash make cover || echo 'Failed'
+  - bash -c "make cover" || echo 'Failed'
   - go test -v -cover -coverprofile=coverage.out -covermode=count ./{,cmd,internal,providers}/... || echo 'Failed'
   - go test -v -cover -coverprofile=coverage.out -covermode=count ./... || echo 'Failed'
   - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./{,cmd,internal,providers}/... || echo 'Failed'
