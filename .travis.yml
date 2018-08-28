@@ -1,17 +1,15 @@
 language: go
 go:
+  - "1.9"
   - "1.10"
   - "1.11"
   - master
 install:
   - go get -v -t ./...
 script:
-  - make --version
   - make help
   - make install
-  - make cover || echo 'Failed'
-  - make cover2 || echo 'Failed'
-  - go test --tags test -v -cover -coverprofile=coverage.out -covermode=count ./{,cmd,internal,providers}/...
+  - make cover
 jobs:
   fast_finish: true
   allow_failures:
