@@ -22,11 +22,13 @@ test             :
 .PHONY           : cover
 cover            : $(COVERAGE_FILE)
 $(COVERAGE_FILE) : $(ALL_GO_FILES)
-	echo go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ${TEST_FILES}
+	go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ${TEST_FILES}
 
 .PHONY: cover2
 cover2:
-	echo go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count ./{,cmd,internal,providers}/...
+	go list . || echo 'Failed'
+	go list ./{,cmd,internal,providers}/... || echo 'Failed'
+	go test --tags test -v -cover -coverprofile=$(COVERAGE_FILE) -covermode=count .
 
 ## coverhtml     : Runs Go unit tests and opens coverage report in your default browser.
 .PHONY           : coverhtml
