@@ -52,6 +52,6 @@ func main() {
   - [x] Basic Invocations
   - [ ] Extended Invocation Support
 - [ ] Google Cloud Functions
-  - [ ] JS Shim
+  - [ ] ~JS Shim~ _GCF Just Announced at Gophercon that Golang support will come soon._
   - [ ] Foreground Function Support
   - [ ] Background Function Support
